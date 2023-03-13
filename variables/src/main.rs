@@ -49,11 +49,11 @@ fn mainTwo(){
     println!("The value of number is: {number}")
 }
 
-fn main3(){
-    let condition = true;
-    let number = if condition {5} else {"6"};//both arms need to have same return type
-    println!("The value of number is: {number}");
-}
+// fn main3(){
+//     let condition = true;
+//     let number = if condition {5} else {"6"};//both arms need to have same return type
+//     println!("The value of number is: {number}");
+// }
 
 fn main4(){
     loop {//infinite loop
@@ -150,6 +150,64 @@ fn main11(){
     let s_len2 = s.len();      // implicit reference
     assert_eq!(s_len1, s_len2);
 }
+
+struct User{
+    active: bool,
+    username: String,
+    email: String,
+    sign_in_count: u64,
+}
+
+fn build_user(email: String, username: String) -> User {
+    User {
+        email: email,
+        username: username,
+        active: true,
+        sign_in_count: 1,
+    }
+}
+
+fn build_user_shorter(email: String, username: String) -> User {
+    User {
+        email,
+        username,
+        active: true,
+        sign_in_count: 1,
+    }
+}
+
+fn structMain(){
+    let mut user1 = User {
+        email: String::from("someone@example.com"),
+        username: String::from("someusername123"),
+        active: true,
+        sign_in_count: 1,
+    };
+    user1.email = String::from("anotheremail@example.com");
+
+    let user2 = User {
+        email: String::from("another@example.com"),
+        ..user1 //user1 can no longer be used as it the username is being moved
+    };
+}
+
+//tuple structs
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
+fn mainTupleStruc(){
+    let black = Color(0,0,0);
+    let origin = Point(0,0,0);
+}
+
+//unit-like structs
+struct AlwaysEqual;
+
+fn mainUnitStruc(){
+    let subject = AlwaysEqual;
+}
+
+
 
 
 
